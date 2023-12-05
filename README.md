@@ -56,5 +56,5 @@ webtest/
 如果您想要執行測試，可以使用以下的指令：
 
 ```bash
-pytest test/test_register.py
+pytest test/test_contact.py
 ```
