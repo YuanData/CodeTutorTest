@@ -30,7 +30,7 @@ class ContactPage:
         self.driver.find_element(By.NAME, EMAIL_FIELD).send_keys(email)
 
     def submit_form(self):
-        self.driver.find_element_by_id(SUBMIT_BUTTON).click()
+        self.driver.find_element(By.ID, SUBMIT_BUTTON).click()
 
     def is_submit_successful(self) -> bool:
         return self.wait.until(EC.text_to_be_present_in_element((By.ID, SUBMIT_BUTTON), "已提交！"))
