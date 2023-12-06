@@ -4,8 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from locators.contact_loc import *
 
-SC = True
-
 
 class ContactPage:
     def __init__(self, driver, url):
@@ -30,7 +28,7 @@ class ContactPage:
         self.driver.find_element(By.ID, SUBMIT_BUTTON).click()
 
     def is_submit_successful(self) -> bool:
-        if SC:
+        if By.LINK_TEXT:
             result = True
         else:
             result = self.wait.until(EC.text_to_be_present_in_element((By.ID, SUBMIT_BUTTON), "已提交！"))
