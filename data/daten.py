@@ -22,7 +22,7 @@ DOMAIN_WEIGHTS = {
 }
 
 
-def normalize_weights(weights):
+def normalize_weights(weights: dict) -> dict:
     total = sum(weights.values())
     return {k: v / total for k, v in weights.items()}
 
@@ -66,7 +66,7 @@ def rand_dt_in_period() -> str:
         .strftime("%Y-%m-%d %H:%M:%S")
 
 
-def generate_sample_data(num_samples: int):
+def generate_sample_data(num_samples: int) -> list:
     data = []
     for _ in range(num_samples):
         name = fake.name()
@@ -77,14 +77,14 @@ def generate_sample_data(num_samples: int):
     return sorted(data, key=lambda x: x[4])  # 用created_at排序
 
 
-def save_to_csv(data, file_path):
+def save_to_csv(data: list, file_path: str):
     with open(file_path, 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(SAMPLE_DATA_HEADERS)
         writer.writerows(data)
 
 
-def save_to_excel(data, file_path):
+def save_to_excel(data: list, file_path: str):
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.append(SAMPLE_DATA_HEADERS)

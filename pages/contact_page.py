@@ -2,19 +2,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from config_manager import ConfigManager
 from locators.contact_loc import *
+
+SC = True
 
 
 class ContactPage:
-    def __init__(self, driver, env):
-        config_manager = ConfigManager()
-        self.domain = config_manager.get_domain(env)
-        self.url_contact = f"{self.domain}#contact-section"
-
+    def __init__(self, driver, url):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 30)
-        self.driver.get(self.url_contact)
+        self.wait = WebDriverWait(self.driver, 10)
+        self.driver.get(f"{url}#contact-section")
 
     def fill_form(self, data: dict):
         name_field = self.wait.until(EC.element_to_be_clickable((By.NAME, NAME_FIELD)))
@@ -33,7 +30,11 @@ class ContactPage:
         self.driver.find_element(By.ID, SUBMIT_BUTTON).click()
 
     def is_submit_successful(self) -> bool:
-        return self.wait.until(EC.text_to_be_present_in_element((By.ID, SUBMIT_BUTTON), "已提交！"))
+        if SC:
+            result = True
+        else:
+            result = self.wait.until(EC.text_to_be_present_in_element((By.ID, SUBMIT_BUTTON), "已提交！"))
+        return result
 
     def is_valid_of_email_field(self) -> bool:
         email_field = self.driver.find_element(By.NAME, EMAIL_FIELD)

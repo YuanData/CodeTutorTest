@@ -15,13 +15,14 @@ def setup():
 
 
 @pytest.fixture
-def env():
+def domain_url():
     """
-    Provides the environment for the test.
-    Available environments are:
-    - PROD
-    - QA
+    Domain URL.
 
-    :return: str - The environment for the test. Default is "UAT".
+    :return: str
     """
-    return "QA"
+    env = "Local"
+    return {
+        "Local": "http://localhost:1313/",
+        "PROD": "https://yuandata.github.io/CodeTutor/",
+    }.get(env)

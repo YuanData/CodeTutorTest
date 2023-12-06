@@ -1,4 +1,0 @@
-[PROD]
-domain = https://web.com
-[QA]
-domain = https://web.qa.com
