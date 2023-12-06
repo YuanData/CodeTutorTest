@@ -93,6 +93,22 @@ def save_to_excel(data: list, file_path: str):
     wb.save(file_path)
 
 
+def post_contact_data(name: str, email: str, phone: str, note: str):
+    import requests
+    url = "https://script.google.com/macros/s/AKfycbw65Zqc0IoCZvignzZmdTQxWNRd1dB81UdqWhX4j6GGwVbbpKZ05JvudXnX_cmT8VK5/exec"
+    data = {'entry.375512735': name, 'entry.796171392': email, 'entry.1450236340': phone, 'entry.2019589220': note}
+    response = requests.post(url, data=data)
+    return response
+
+
+def verify_contact_data():
+    data = {"name": fake.name(), "email": rand_email(), "phone": rand_phone(), "note": "報名"}
+    response = post_contact_data(**data)
+    print(data)
+    print(f"Response status code: {response.status_code}")
+    print(f"Response text: {response.text}")
+
+
 if __name__ == '__main__':
     sample_data = generate_sample_data(40)
     save_to_csv(sample_data, 'output/sample_data.csv')
