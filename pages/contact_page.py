@@ -19,15 +19,15 @@ class ContactPage:
     def fill_form(self, data: dict):
         name_field = self.wait.until(EC.element_to_be_clickable((By.NAME, NAME_FIELD)))
         name_field.send_keys(data["name"])
-        self.driver.find_element_by_name(EMAIL_FIELD).send_keys(data["email"])
+        self.driver.find_element(By.NAME, EMAIL_FIELD).send_keys(data["email"])
         if "phone" in data:
-            self.driver.find_element_by_name(PHONE_FIELD).send_keys(data["phone"])
+            self.driver.find_element(By.NAME, PHONE_FIELD).send_keys(data["phone"])
         if "notes" in data:
-            self.driver.find_element_by_name(NOTES_FIELD).send_keys(data["notes"])
+            self.driver.find_element(By.NAME, NOTES_FIELD).send_keys(data["notes"])
 
     def fill_email(self, email: str):
         self.wait.until(EC.element_to_be_clickable((By.NAME, EMAIL_FIELD)))
-        self.driver.find_element_by_name(EMAIL_FIELD).send_keys(email)
+        self.driver.find_element(By.NAME, EMAIL_FIELD).send_keys(email)
 
     def submit_form(self):
         self.driver.find_element_by_id(SUBMIT_BUTTON).click()
@@ -36,5 +36,5 @@ class ContactPage:
         return self.wait.until(EC.text_to_be_present_in_element((By.ID, SUBMIT_BUTTON), "已提交！"))
 
     def is_valid_of_email_field(self) -> bool:
-        email_field = self.driver.find_element_by_name(EMAIL_FIELD)
+        email_field = self.driver.find_element(By.NAME, EMAIL_FIELD)
         return email_field.get_property('validity').get('valid')
