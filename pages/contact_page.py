@@ -21,8 +21,9 @@ class ContactPage:
             self.driver.find_element(By.NAME, NOTES_FIELD).send_keys(data["notes"])
 
     def fill_email(self, email: str):
-        self.wait.until(EC.element_to_be_clickable((By.NAME, EMAIL_FIELD)))
-        self.driver.find_element(By.NAME, EMAIL_FIELD).send_keys(email)
+        email_field = self.wait.until(EC.element_to_be_clickable((By.NAME, EMAIL_FIELD)))
+        email_field.clear()
+        email_field.send_keys(email)
 
     def submit_form(self):
         self.driver.find_element(By.ID, SUBMIT_BUTTON).click()
