@@ -25,8 +25,16 @@ class ContactPage:
         if "notes" in data:
             self.driver.find_element_by_name(NOTES_FIELD).send_keys(data["notes"])
 
+    def fill_email(self, email: str):
+        self.wait.until(EC.element_to_be_clickable((By.NAME, EMAIL_FIELD)))
+        self.driver.find_element_by_name(EMAIL_FIELD).send_keys(email)
+
     def submit_form(self):
         self.driver.find_element_by_id(SUBMIT_BUTTON).click()
 
-    def is_submit_successful(self):
+    def is_submit_successful(self) -> bool:
         return self.wait.until(EC.text_to_be_present_in_element((By.ID, SUBMIT_BUTTON), "已提交！"))
+
+    def is_valid_of_email_field(self) -> bool:
+        email_field = self.driver.find_element_by_name(EMAIL_FIELD)
+        return email_field.get_property('validity').get('valid')
