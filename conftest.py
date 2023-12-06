@@ -24,4 +24,4 @@ def env():
 
     :return: str - The environment for the test. Default is "UAT".
     """
-    return "PROD"
+    return "QA"

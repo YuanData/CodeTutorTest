@@ -2,5 +2,4 @@
 .idea
 __pycache__
 drivers
-config.ini
 data/output
