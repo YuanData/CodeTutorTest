@@ -13,7 +13,7 @@ class ContactPage:
         self.url_contact = f"{self.domain}#contact-section"
 
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(self.driver, 30)
         self.driver.get(self.url_contact)
 
     def fill_form(self, data: dict):
