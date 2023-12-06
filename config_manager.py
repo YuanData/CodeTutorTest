@@ -2,9 +2,10 @@ import configparser
 
 
 class ConfigManager:
-    def __init__(self, config_path='../setting/config.ini'):
+    def __init__(self):
         self.config = configparser.ConfigParser()
-        self.config.read(config_path)
+        self.config.read('setting/config.ini')
 
     def get_domain(self, env):
+        print(self.config)
         return self.config[env]['domain']
