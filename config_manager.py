@@ -8,4 +8,4 @@ class ConfigManager:
 
     def get_domain(self, env):
         print(self.config)
-        return self.config[env]['domain']
+        return "http://localhost:1313/CodeTutor/"
