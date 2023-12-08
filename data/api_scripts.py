@@ -5,8 +5,8 @@ import requests
 
 def parse_counter_from(response_text: str) -> int:
     """ Extract the counter value from the response text using regular expression """
-    match = re.search(r"This site has been visited (\d+) times.", response_text)
-    return int(match.group(1)) if match else None
+    match = re.search(r"This site has been visited ([\d,]+) times.", response_text)
+    return int(match.group(1).replace(',', '')) if match else None
 
 
 def verify_web_counter():
